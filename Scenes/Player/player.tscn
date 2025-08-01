@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://4g002waug6ad"]
+[gd_scene load_steps=75 format=3 uid="uid://4g002waug6ad"]
 
 [ext_resource type="Script" uid="uid://bgw8chirg1apk" path="res://Scripts/Player/player.gd" id="1_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://b8ucas3p7ikw1" path="res://Sprites/Hana Caraka - Base Character Sample/death.png" id="1_mtuoh"]
@@ -511,10 +511,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_jhyir"]
-offsets = PackedFloat32Array(0, 0.173333, 0.34, 0.513333, 0.66, 0.813333, 1)
-colors = PackedColorArray(1, 0.837902, 0.876572, 1, 0.992322, 0.886837, 0.834588, 1, 0.980282, 0.950544, 0.742516, 1, 0.923675, 0.995256, 0.835886, 1, 0.918245, 1, 0.954407, 1, 0.975501, 0.822185, 0.997682, 1, 1, 1, 1, 1)
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_dd0ac")
 
@@ -547,6 +543,5 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wonderline" parent="." instance=ExtResource("10_jhyir")]
-gradient = SubResource("Gradient_jhyir")
 
 [connection signal="timeout" from="DodgeTimer" to="PlayerStateMachine/Dodge" method="_on_dodge_timer_timeout"]

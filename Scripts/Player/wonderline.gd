@@ -124,6 +124,7 @@ func process_loop() -> void:
 					if !looped_segment:
 						looped = false
 						print("No longer Looped")
+						remove_oldest_loop()
 					return
 				looped = true
 				looped_segment = candidate
@@ -135,7 +136,10 @@ func process_loop() -> void:
 func push_loop(first_index:int, second_index:int) -> void:
 	looped_points.clear()
 	
-	var loop := Area2D.new()
+	var loop := LoopArea.new()
+	if loop.loop_count != 0:
+		loop.loop_count += 1
+		loop.loop_index = loop.loop_count
 	
 	for point_index in _points.size():
 		if point_index >= first_index + 1:
@@ -146,6 +150,14 @@ func push_loop(first_index:int, second_index:int) -> void:
 	loop.add_child(collision)
 	_loops.add_child(loop)
 
+func remove_oldest_loop() -> void:
+	for loop in _loops.get_children():
+		if loop is LoopArea:
+			if loop.loop_index != 0:
+				loop.loop_index -= 1
+			else: 
+				loop.loop_count -= 1
+				loop.queue_free()
 
 func check_for_capture() -> void:
 	if looped:

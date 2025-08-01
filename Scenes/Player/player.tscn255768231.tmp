@@ -547,6 +547,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Wonderline" parent="." instance=ExtResource("10_jhyir")]
+position = Vector2(0, 4)
 gradient = SubResource("Gradient_jhyir")
 
 [connection signal="timeout" from="DodgeTimer" to="PlayerStateMachine/Dodge" method="_on_dodge_timer_timeout"]

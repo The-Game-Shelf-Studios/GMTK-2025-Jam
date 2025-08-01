@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvdd3inixxgu"]
+
+[ext_resource type="Texture2D" uid="uid://jsqfdxuj1wbu" path="res://Scenes/Characters/bunny_5.png" id="1_366os"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kksxm"]
+size = Vector2(10, 10)
+
+[node name="TestEnemy" type="StaticBody2D" groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kksxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_366os")

@@ -8,10 +8,11 @@ class_name Player extends CharacterBody2D
 var direction : Vector2
 var cardinal_direction = Vector2.DOWN
 
-@export var max_health : int = 30
+@export var max_health : int = 3
 var current_health : int
 
 var dodge_on_cooldown := false
+var player_dead := false
 
 func _ready() -> void:
 	initialize_player()
@@ -24,7 +25,6 @@ func _process(delta: float) -> void:
 		for enemy in my_wonderline.check_for_capture():
 			if enemy is Enemy:
 				enemy._take_damage(my_wonderline.wonderline_strength)
-			pass
 		my_wonderline.drawing = false
 		my_wonderline.total_purge()
 
@@ -73,7 +73,6 @@ func animation_direction() -> String:
 func _on_hurtbox_recieved_damage(damage: int) -> void:
 	current_health -= damage
 	print("Player took ", damage, " damage.")
-
 
 func _on_dodge_cooldown_timeout() -> void:
 	dodge_on_cooldown = false

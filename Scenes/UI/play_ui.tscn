@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://crp0hfpr2id5d"]
+
+[ext_resource type="Texture2D" uid="uid://10xd6dde7i3u" path="res://Sprites/Assets/Hearts/heart_sharp.png" id="1_h1rvu"]
+
+[node name="Play_UI" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 90.0
+offset_bottom = 32.0
+
+[node name="Heart1" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_h1rvu")
+stretch_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_h1rvu")
+stretch_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_h1rvu")
+stretch_mode = 2

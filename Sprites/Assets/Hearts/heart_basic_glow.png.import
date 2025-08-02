@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3r40jk3locir"
-path="res://.godot/imported/heart_darker_empty.png-c81868059dc75180bf14bea1fac2891c.ctex"
+uid="uid://dmt7l76vdavj6"
+path="res://.godot/imported/heart_basic_glow.png-19516e479787ac1be2086e0b936df36e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Hearts/heart_darker_empty.png"
-dest_files=["res://.godot/imported/heart_darker_empty.png-c81868059dc75180bf14bea1fac2891c.ctex"]
+source_file="res://Sprites/Assets/Hearts/heart_basic_glow.png"
+dest_files=["res://.godot/imported/heart_basic_glow.png-19516e479787ac1be2086e0b936df36e.ctex"]
 
 [params]
 

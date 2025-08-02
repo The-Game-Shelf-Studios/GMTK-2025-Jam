@@ -77,6 +77,16 @@ Pause={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="hurtbox"
+2d_physics/layer_5="enemy"
+2d_physics/layer_6="hitbox"
+2d_physics/layer_9="wall"
+2d_physics/layer_10="world_object"
+2d_physics/layer_11="door"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

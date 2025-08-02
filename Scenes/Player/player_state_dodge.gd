@@ -2,7 +2,8 @@ extends State
 
 @onready var idle : State = $"../Idle"
 @onready var move : State = $"../Move"
-@onready var dodge_timer: Timer = $"../../DodgeTimer"
+@onready var dodge_timer: Timer = $DodgeTimer
+
 
 @export var dodge_speed: float = 400
 var dodge_finished : bool = false
@@ -15,6 +16,8 @@ func Enter() -> void:
 	
 # What happens when player exit's this state?
 func Exit() -> void:
+	player.dodge_on_cooldown = true
+	player.dodge_cooldown_timer.start()
 	pass # Replace with function body.
 	
 # What happens during _process update in this State? 

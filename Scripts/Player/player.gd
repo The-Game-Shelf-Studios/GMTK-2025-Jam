@@ -2,26 +2,40 @@ class_name Player extends CharacterBody2D
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player_state_machine: PlayerStateMachine = $PlayerStateMachine
-@onready var wonderline: Wonderline = $Wonderline
+@onready var my_wonderline: Wonderline = $Wonderline
+@onready var dodge_cooldown_timer: Timer = $DodgeCooldown
 
 var direction : Vector2
 var cardinal_direction = Vector2.DOWN
 
+@export var max_health : int = 3
+var current_health : int
+
+var dodge_on_cooldown := false
+
 func _ready() -> void:
-	# Initialize State Machine
-	player_state_machine.initialize(self)
+	initialize_player()
 
 func _process(delta: float) -> void:
 	direction = Input.get_vector("Move_Left","Move_Right","Move_Up","Move_Down")
 	if Input.is_action_pressed("Draw"):
-		wonderline.drawing = true
+		my_wonderline.drawing = true
 	if Input.is_action_just_released("Draw"):
-		wonderline.check_for_capture()
-		wonderline.drawing = false
-		wonderline.total_purge()
+		for enemy in my_wonderline.check_for_capture():
+			if enemy is Enemy:
+				enemy._take_damage(my_wonderline.wonderline_strength)
+			pass
+		my_wonderline.drawing = false
+		my_wonderline.total_purge()
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
+
+func initialize_player() -> void:
+	GameManager.player = self
+	current_health = max_health
+	# Initialize State Machine
+	player_state_machine.initialize(self)
 
 func move(speed : float, state_name : String) -> void:
 	velocity = direction * speed
@@ -55,3 +69,11 @@ func animation_direction() -> String:
 		return "Up"
 	else:
 		return "Side" 
+
+func _on_hurtbox_recieved_damage(damage: int) -> void:
+	current_health -= damage
+	print("Player took ", damage, " damage.")
+
+
+func _on_dodge_cooldown_timeout() -> void:
+	dodge_on_cooldown = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://4g002waug6ad"]
+[gd_scene load_steps=77 format=3 uid="uid://4g002waug6ad"]
 
 [ext_resource type="Script" uid="uid://bgw8chirg1apk" path="res://Scripts/Player/player.gd" id="1_dd0ac"]
 [ext_resource type="Texture2D" uid="uid://b8ucas3p7ikw1" path="res://Sprites/Hana Caraka - Base Character Sample/death.png" id="1_mtuoh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cfnxbxabw4dgn" path="res://Scripts/Player/States/player_state_move.gd" id="8_jlvik"]
 [ext_resource type="Script" uid="uid://d2qf7gi7lukh6" path="res://Scenes/Player/player_state_dodge.gd" id="9_gk6dx"]
 [ext_resource type="PackedScene" uid="uid://chlve2760h5b1" path="res://Scenes/Player/wonderline.tscn" id="10_jhyir"]
+[ext_resource type="PackedScene" uid="uid://glydqt3iql2a" path="res://Scenes/Utility/hurtbox.tscn" id="11_74mp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jlvik"]
 size = Vector2(13, 14)
@@ -511,6 +512,9 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74mp2"]
+size = Vector2(12, 12)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_dd0ac")
 
@@ -534,14 +538,25 @@ script = ExtResource("8_jlvik")
 [node name="Dodge" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_gk6dx")
 
+[node name="DodgeTimer" type="Timer" parent="PlayerStateMachine/Dodge"]
+wait_time = 0.1
+one_shot = true
+
 [node name="Death" type="Node" parent="PlayerStateMachine"]
 
 [node name="Pause" type="Node" parent="PlayerStateMachine"]
 
-[node name="DodgeTimer" type="Timer" parent="."]
-wait_time = 0.1
-one_shot = true
-
 [node name="Wonderline" parent="." instance=ExtResource("10_jhyir")]
 
-[connection signal="timeout" from="DodgeTimer" to="PlayerStateMachine/Dodge" method="_on_dodge_timer_timeout"]
+[node name="Hurtbox" parent="." instance=ExtResource("11_74mp2")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_74mp2")
+
+[node name="DodgeCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="PlayerStateMachine/Dodge/DodgeTimer" to="PlayerStateMachine/Dodge" method="_on_dodge_timer_timeout"]
+[connection signal="recieved_damage" from="Hurtbox" to="." method="_on_hurtbox_recieved_damage"]
+[connection signal="timeout" from="DodgeCooldown" to="." method="_on_dodge_cooldown_timeout"]

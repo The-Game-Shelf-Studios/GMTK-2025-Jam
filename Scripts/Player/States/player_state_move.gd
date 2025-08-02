@@ -29,6 +29,6 @@ func Physics(_delta : float) -> State:
 	
 # What happens with Input Events in this State?
 func HandleInput(_event : InputEvent) -> State:
-	if _event.is_action_pressed("Dodge"):
+	if _event.is_action_pressed("Dodge") && !player.dodge_on_cooldown:
 		return dodge
 	return null

@@ -15,6 +15,10 @@ run/main_scene="uid://cop6ibdrhc6sm"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://Scripts/General Scripts/game_manager.gd"
+
 [display]
 
 window/stretch/mode="viewport"
@@ -25,6 +29,7 @@ window/stretch/scale=2.0
 
 Enemy=""
 Player=""
+Wonderline=""
 
 [input]
 
@@ -81,8 +86,10 @@ Pause={
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="hurtbox"
+2d_physics/layer_3="wonderline"
 2d_physics/layer_5="enemy"
 2d_physics/layer_6="hitbox"
+2d_physics/layer_7="projectile"
 2d_physics/layer_9="wall"
 2d_physics/layer_10="world_object"
 2d_physics/layer_11="door"

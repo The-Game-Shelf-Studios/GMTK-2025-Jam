@@ -786,7 +786,7 @@ sources/1 = SubResource("TileSetAtlasSource_02wxx")
 sources/2 = SubResource("TileSetAtlasSource_1bq8k")
 sources/3 = SubResource("TileSetAtlasSource_snkhx")
 
-[node name="Test_Tileset" type="Node2D"]
+[node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -822,17 +822,17 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="LilSlimeEnemy" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(205, -57)
+position = Vector2(80, -34)
 
 [node name="LilSlimeEnemy2" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(-122, -80)
+position = Vector2(-47, -37)
 
 [node name="LilSlimeEnemy3" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(-160, 90)
+position = Vector2(-59, 59)
 
 [node name="LilSlimeEnemy4" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(24, 161)
+position = Vector2(81, 56)
 
 [node name="LilSlimeEnemy5" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(211, 19)
+position = Vector2(111, 8)
 scale = Vector2(1, 1.03364)

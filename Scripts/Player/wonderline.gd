@@ -1,36 +1,37 @@
 class_name Wonderline extends Node2D
 
 
-@export var line_gradient : Gradient
-
-@export var _line : Line2D
-var _width := 5.0
-
+var _width : float
 var _segments : Node2D
 var _loops : Node2D
+var _looped_segments = []
 
+@export_category("Line Settings")
 var _points : PackedVector2Array = PackedVector2Array()
-@export var max_points : float = 200
-@export var _max_distance: float = 0
+@export var _line : Line2D
+@export var max_points : float = 150
+@export var _max_distance: float = 2
+@export var unlooped_line_gradient : Gradient
+@export var looped_line_gradient : Gradient
 
 var drawing : bool = false
 var looped : bool = false
-var looped_segment
 var looped_points = PackedVector2Array()
-var captured_enemies = []
+
+@export var wonderline_strength : float = 1
 
 func _ready() -> void:
-	#_line = Line2D.new()
-	#_line.name = "_line"
-	#_line.gradient = line_gradient
-	#_line.width = 5
-	#add_child(_line)
+	_line.gradient = unlooped_line_gradient
+	_width = _line.width
+	
 	_segments = Node2D.new()
 	_segments.name = "_segments"
 	add_child(_segments)
+	
 	_loops = Node2D.new()
 	_loops.name = "_loops"
 	add_child(_loops)
+
 
 func _physics_process(delta: float) -> void:
 	global_position = Vector2.ZERO
@@ -66,6 +67,7 @@ func add_segment(start:Vector2, end:Vector2) -> void:
 	var segment := Area2D.new()
 	var collision := create_collision_polygon(points)
 	segment.add_child(collision)
+	segment.set_collision_layer_value(3, true)
 	_segments.add_child(segment)
 
 func change_segment(start:Vector2, end:Vector2) -> void:
@@ -90,6 +92,7 @@ func total_purge() -> void:
 	purge_loops()
 	looped = false
 	looped_points.clear()
+	_line.gradient = unlooped_line_gradient
 	
 func purge(index:int) -> void:
 	var segments := _segments.get_children()
@@ -97,6 +100,9 @@ func purge(index:int) -> void:
 		if _points.size() > 0:
 			_points.remove_at(0)
 		if segments.size() > 0:
+			if _looped_segments.has(segments[0]):
+				_looped_segments.erase(segments[0])
+				remove_last_loop()
 			_segments.remove_child(segments[0])
 			segments[0].queue_free()
 			segments.remove_at(0)
@@ -115,22 +121,28 @@ func process_loop() -> void:
 		var candidates := segment.get_overlapping_areas()
 		for candidate in candidates:
 			var candidate_index := segments.find(candidate)
+			
+			if looped:
+				if _looped_segments.size() == 0:
+					looped = false
+					print("No longer Looped")
+					remove_last_loop()
+					_line.gradient = unlooped_line_gradient
+			
 			if candidate_index == -1:
 				continue
-			
-			
 			elif abs(candidate_index - index) > 2:
-				if looped:
-					if !looped_segment:
-						looped = false
-						print("No longer Looped")
-						remove_oldest_loop()
+				if _looped_segments.has(candidate):
 					return
-				looped = true
-				looped_segment = candidate
-				print("Looped")
-				push_loop(candidate_index, index)
-				#purge(index)
+				
+				_looped_segments.append(candidate)
+				
+				if !looped:
+					looped = true
+					print("Looped")
+					push_loop(candidate_index, index)
+					_line.gradient = looped_line_gradient
+					#purge(index)
 				return
 
 func push_loop(first_index:int, second_index:int) -> void:
@@ -140,6 +152,8 @@ func push_loop(first_index:int, second_index:int) -> void:
 	if loop.loop_count != 0:
 		loop.loop_count += 1
 		loop.loop_index = loop.loop_count
+	elif loop.loop_count > 2:
+		remove_last_loop()
 	
 	for point_index in _points.size():
 		if point_index >= first_index + 1:
@@ -150,7 +164,7 @@ func push_loop(first_index:int, second_index:int) -> void:
 	loop.add_child(collision)
 	_loops.add_child(loop)
 
-func remove_oldest_loop() -> void:
+func remove_last_loop() -> void:
 	for loop in _loops.get_children():
 		if loop is LoopArea:
 			if loop.loop_index != 0:
@@ -159,12 +173,13 @@ func remove_oldest_loop() -> void:
 				loop.loop_count -= 1
 				loop.queue_free()
 
-func check_for_capture() -> void:
+func check_for_capture() -> Array:
+	var enemies = []
 	if looped:
 		for loop in _loops.get_children():
 			for i in loop.get_overlapping_bodies():
-				if i.is_in_group("Enemy"):
+				if i is Enemy:
 					print(i.name, " is Looped")
-		#for i in get_tree().get_nodes_in_group("Enemy"):
-			#if Geometry2D.is_point_in_polygon(i.global_position, looped_points):
-				#print(i.name," is Looped")
+					enemies.append(i)
+	
+	return enemies

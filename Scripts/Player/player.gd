@@ -8,7 +8,7 @@ class_name Player extends CharacterBody2D
 var direction : Vector2
 var cardinal_direction = Vector2.DOWN
 
-@export var max_health : int = 3
+@export var max_health : int = 30
 var current_health : int
 
 var dodge_on_cooldown := false

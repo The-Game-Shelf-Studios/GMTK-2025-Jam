@@ -21,8 +21,7 @@ GameManager="*res://Scripts/General Scripts/game_manager.gd"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
+window/stretch/mode="canvas_items"
 window/stretch/scale=2.0
 
 [global_group]

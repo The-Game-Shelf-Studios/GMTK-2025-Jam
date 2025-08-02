@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://chn5lbetxbojm"]
+
+[ext_resource type="SpriteFrames" uid="uid://c4m8afo448ecd" path="res://Sprites/Enemies/Slime/LilSlimeSpriteFrames.tres" id="1_gf46v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kksxm"]
+size = Vector2(10, 10)
+
+[node name="FireySlime" type="StaticBody2D" groups=["Enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kksxm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_gf46v")
+animation = &"WalkRight"

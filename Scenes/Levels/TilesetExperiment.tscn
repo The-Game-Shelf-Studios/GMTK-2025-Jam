@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyldaon5mjbmy" path="res://Sprites/Dungeon/decorative_cracks_walls.png" id="3_hjery"]
 [ext_resource type="Texture2D" uid="uid://ds8uldlytx7y5" path="res://Sprites/Dungeon/Objects.png" id="4_b5gyh"]
 [ext_resource type="PackedScene" uid="uid://4g002waug6ad" path="res://Scenes/Player/player.tscn" id="5_0mruj"]
-[ext_resource type="PackedScene" uid="uid://bvdd3inixxgu" path="res://Scenes/Enemies/test_enemy.tscn" id="6_hjery"]
+[ext_resource type="PackedScene" uid="uid://bvdd3inixxgu" path="res://Scenes/Enemies/LilSlime.tscn" id="6_hjery"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqesp"]
 texture = ExtResource("1_2j4y5")
@@ -827,4 +827,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="TestEnemy" parent="." instance=ExtResource("6_hjery")]
+position = Vector2(-65, -73)
+
+[node name="LilSlimeEnemy" parent="." instance=ExtResource("6_hjery")]
 position = Vector2(-65, -73)

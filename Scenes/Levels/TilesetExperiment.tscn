@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=4 uid="uid://cop6ibdrhc6sm"]
+[gd_scene load_steps=14 format=4 uid="uid://cop6ibdrhc6sm"]
 
 [ext_resource type="Texture2D" uid="uid://c5rknrs3lsddb" path="res://Sprites/Dungeon/walls_floor.png" id="1_2j4y5"]
 [ext_resource type="Texture2D" uid="uid://djqoik8ag24nh" path="res://Sprites/Dungeon/decorative_cracks_floor.png" id="2_0mruj"]
 [ext_resource type="Texture2D" uid="uid://cyldaon5mjbmy" path="res://Sprites/Dungeon/decorative_cracks_walls.png" id="3_hjery"]
 [ext_resource type="Texture2D" uid="uid://ds8uldlytx7y5" path="res://Sprites/Dungeon/Objects.png" id="4_b5gyh"]
 [ext_resource type="PackedScene" uid="uid://4g002waug6ad" path="res://Scenes/Player/player.tscn" id="5_0mruj"]
+[ext_resource type="PackedScene" uid="uid://crp0hfpr2id5d" path="res://Scenes/UI/play_ui.tscn" id="6_b5gyh"]
 [ext_resource type="PackedScene" uid="uid://bvdd3inixxgu" path="res://Scenes/Enemies/LilSlime.tscn" id="6_hjery"]
+[ext_resource type="PackedScene" uid="uid://cn8r1adgu3ywu" path="res://Scenes/UI/pause_menu.tscn" id="7_bqesp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqesp"]
 texture = ExtResource("1_2j4y5")
@@ -820,6 +822,11 @@ process_callback = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="Play_UI" parent="Player/Camera2D" instance=ExtResource("6_b5gyh")]
+
+[node name="PauseMenu" parent="Player/Camera2D" instance=ExtResource("7_bqesp")]
+visible = false
 
 [node name="LilSlimeEnemy" parent="." instance=ExtResource("6_hjery")]
 position = Vector2(205, -57)

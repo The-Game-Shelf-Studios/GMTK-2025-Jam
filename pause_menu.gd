@@ -1,19 +1,14 @@
-extends Control
+extends CanvasLayer
 
 func _ready() -> void:
-	 # Replace with function body.
-	pass
-
+	GameManager.pause_menu = self
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
-
-
-
 func _on_resume_button_pressed() -> void:
-	pass # Replace with function body.
+	PauseNode.unpause_game()
 
 
 func _on_exit_button_pressed() -> void:

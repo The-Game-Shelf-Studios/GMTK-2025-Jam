@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 func initialize_player() -> void:
 	GameManager.player = self
 	current_health = max_health
+	GameManager.heart_bar.update_health(max_health)
 	# Initialize State Machine
 	player_state_machine.initialize(self)
 
@@ -72,6 +73,7 @@ func animation_direction() -> String:
 
 func _on_hurtbox_recieved_damage(damage: int) -> void:
 	current_health -= damage
+	GameManager.heart_bar.update_health(current_health)
 	print("Player took ", damage, " damage.")
 
 func _on_dodge_cooldown_timeout() -> void:

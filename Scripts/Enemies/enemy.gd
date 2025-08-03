@@ -15,3 +15,4 @@ func _take_damage(damage : int) ->void:
 func remove_from_game_manager() -> void:
 	if GameManager.enemies.has(self):
 		GameManager.enemies.erase(self)
+		print(GameManager.enemies.size() , " Enemies Left")

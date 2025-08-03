@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=4 uid="uid://cop6ibdrhc6sm"]
+[gd_scene load_steps=20 format=4 uid="uid://cop6ibdrhc6sm"]
 
+[ext_resource type="Script" uid="uid://cy6nt22krhugg" path="res://Scenes/Levels/tileset_experiment.gd" id="1_1bq8k"]
 [ext_resource type="Texture2D" uid="uid://c5rknrs3lsddb" path="res://Sprites/Dungeon/walls_floor.png" id="1_2j4y5"]
 [ext_resource type="Texture2D" uid="uid://djqoik8ag24nh" path="res://Sprites/Dungeon/decorative_cracks_floor.png" id="2_0mruj"]
 [ext_resource type="Texture2D" uid="uid://cyldaon5mjbmy" path="res://Sprites/Dungeon/decorative_cracks_walls.png" id="3_hjery"]
@@ -8,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://crp0hfpr2id5d" path="res://Scenes/UI/play_ui.tscn" id="6_b5gyh"]
 [ext_resource type="PackedScene" uid="uid://bvdd3inixxgu" path="res://Scenes/Enemies/LilSlime.tscn" id="6_hjery"]
 [ext_resource type="PackedScene" uid="uid://cn8r1adgu3ywu" path="res://Scenes/UI/pause_menu.tscn" id="7_bqesp"]
+[ext_resource type="Script" uid="uid://drcfxc00iapa4" path="res://Scripts/General Scripts/camera_script.gd" id="7_snkhx"]
+[ext_resource type="PackedScene" uid="uid://cqymslgdjlt8c" path="res://Scripts/UI/game_over_ui.tscn" id="8_02wxx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bqesp"]
 texture = ExtResource("1_2j4y5")
@@ -788,7 +791,18 @@ sources/1 = SubResource("TileSetAtlasSource_02wxx")
 sources/2 = SubResource("TileSetAtlasSource_1bq8k")
 sources/3 = SubResource("TileSetAtlasSource_snkhx")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1bq8k"]
+size = Vector2(880, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snkhx"]
+size = Vector2(40, 576)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2d4ad"]
+size = Vector2(27, 29)
+
 [node name="Test_Tileset" type="Node2D"]
+position = Vector2(416, 240)
+script = ExtResource("1_1bq8k")
 
 [node name="TileMap" type="Node2D" parent="."]
 
@@ -816,30 +830,131 @@ tile_map_data = PackedByteArray("AAAMAPb/AwAVAAMAAAAMAPT/AAAAABkAAAAEAPT/AAAAABk
 tile_set = SubResource("TileSet_2d4ad")
 
 [node name="Player" parent="." instance=ExtResource("5_0mruj")]
+z_index = 1
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-process_callback = 0
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("groundlayer")]
+limit_left = 0
+limit_top = 0
 limit_smoothed = true
 position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+position_smoothing_speed = 6.0
+script = ExtResource("7_snkhx")
+groundlayer = NodePath("../../TileMap/walls")
 
 [node name="Play_UI" parent="Player/Camera2D" instance=ExtResource("6_b5gyh")]
 
 [node name="PauseMenu" parent="Player/Camera2D" instance=ExtResource("7_bqesp")]
 visible = false
 
+[node name="Game_Over_UI" parent="Player/Camera2D" instance=ExtResource("8_02wxx")]
+visible = false
+
 [node name="LilSlimeEnemy" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(205, -57)
+position = Vector2(-34, 151)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
 
 [node name="LilSlimeEnemy2" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(-122, -80)
+position = Vector2(-278, -99)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
 
 [node name="LilSlimeEnemy3" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(-160, 90)
+position = Vector2(-273, 145)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
 
 [node name="LilSlimeEnemy4" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(24, 161)
+position = Vector2(350, 156)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
+
+[node name="LilSlimeEnemy7" parent="." instance=ExtResource("6_hjery")]
+position = Vector2(354, -112)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
 
 [node name="LilSlimeEnemy5" parent="." instance=ExtResource("6_hjery")]
-position = Vector2(211, 19)
+position = Vector2(0, 111)
 scale = Vector2(1, 1.03364)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
+
+[node name="LilSlimeEnemy6" parent="." instance=ExtResource("6_hjery")]
+position = Vector2(34, 148)
+scale = Vector2(1, 1.03364)
+projectiles_per_volley = null
+fire_delay = null
+fire_cooldown = null
+line_bonus = null
+
+[node name="Walls and Objects" type="Node2D" parent="."]
+
+[node name="Wall" type="StaticBody2D" parent="Walls and Objects"]
+position = Vector2(0, -186)
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls and Objects/Wall"]
+position = Vector2(24, -30)
+shape = SubResource("RectangleShape2D_1bq8k")
+
+[node name="Wall2" type="StaticBody2D" parent="Walls and Objects"]
+position = Vector2(0, 312)
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls and Objects/Wall2"]
+position = Vector2(24, -30)
+shape = SubResource("RectangleShape2D_1bq8k")
+
+[node name="Wall3" type="StaticBody2D" parent="Walls and Objects"]
+position = Vector2(-392, 0)
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls and Objects/Wall3"]
+position = Vector2(-12, 32)
+shape = SubResource("RectangleShape2D_snkhx")
+
+[node name="Wall4" type="StaticBody2D" parent="Walls and Objects"]
+position = Vector2(472, 0)
+collision_layer = 257
+collision_mask = 257
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls and Objects/Wall4"]
+position = Vector2(-12, 32)
+shape = SubResource("RectangleShape2D_snkhx")
+
+[node name="Objects" type="StaticBody2D" parent="Walls and Objects"]
+position = Vector2(-336, 216)
+collision_layer = 513
+collision_mask = 513
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls and Objects/Objects"]
+position = Vector2(3.5, 4.5)
+shape = SubResource("RectangleShape2D_2d4ad")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls and Objects/Objects"]
+position = Vector2(-47, -106)
+shape = SubResource("RectangleShape2D_2d4ad")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls and Objects/Objects"]
+position = Vector2(-33, 9)
+shape = SubResource("RectangleShape2D_2d4ad")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls and Objects/Objects"]
+position = Vector2(527, -376)
+shape = SubResource("RectangleShape2D_2d4ad")

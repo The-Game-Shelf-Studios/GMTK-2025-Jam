@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="GMTK2025LOOP"
+config/name="Loop Warrior"
+config/version="v0.1"
 run/main_scene="uid://dvuyvyv2ved5j"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -22,7 +23,7 @@ PauseNode="*res://Scenes/Utility/pause_node.tscn"
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/scale=2.0
 
 [global_group]

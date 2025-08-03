@@ -1,28 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvdd3inixxgu"]
+[gd_scene load_steps=6 format=3 uid="uid://bvdd3inixxgu"]
 
 [ext_resource type="Script" uid="uid://beqokldatlal2" path="res://Scripts/Enemies/lil_slime.gd" id="1_73uor"]
 [ext_resource type="SpriteFrames" uid="uid://c4m8afo448ecd" path="res://Sprites/Enemies/Slime/LilSlimeSpriteFrames.tres" id="1_366os"]
+[ext_resource type="PackedScene" uid="uid://bm0evtmlxjlur" path="res://Scenes/Utility/hitbox.tscn" id="3_pwx3c"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kksxm"]
-size = Vector2(10, 10)
+[sub_resource type="CircleShape2D" id="CircleShape2D_73uor"]
+radius = 7.07107
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hj27d"]
+radius = 9.05539
 
 [node name="LilSlime" type="StaticBody2D" groups=["Enemy"]]
+collision_layer = 17
 script = ExtResource("1_73uor")
+projectiles_per_volley = 2
+fire_delay = 0.2
+health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_kksxm")
+shape = SubResource("CircleShape2D_73uor")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("1_366os")
 animation = &"Death_Up"
 
 [node name="AttackDelay" type="Timer" parent="."]
-wait_time = 0.001
 one_shot = true
 autostart = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
 one_shot = true
+
+[node name="Hitbox" parent="." instance=ExtResource("3_pwx3c")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_hj27d")
 
 [connection signal="begin_death" from="." to="." method="_on_begin_death"]
 [connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]

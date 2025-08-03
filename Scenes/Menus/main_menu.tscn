@@ -1,73 +1,57 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvuyvyv2ved5j"]
 
-[ext_resource type="Script" uid="uid://bmnil1temf38v" path="res://Scripts/General Scripts/main_menu.gd" id="1_38aua"]
+[ext_resource type="Script" uid="uid://bmnil1temf38v" path="res://Scripts/UI/main_menu.gd" id="1_38aua"]
 
 [node name="Main Menu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_38aua")
 
-[node name="TitleLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.283
-anchor_right = 0.697
-anchor_bottom = 0.162
-offset_left = -0.0160217
-offset_top = 2.0
-offset_right = 0.0559692
-offset_bottom = 0.0240021
+[node name="Main_Menu_Layer" type="CanvasLayer" parent="."]
+
+[node name="TitleLabel" type="Label" parent="Main_Menu_Layer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -238.5
+offset_right = 238.5
+offset_bottom = 103.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 75
 text = "Loop Warrior"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CreditsLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.392
-anchor_right = 0.267
-anchor_bottom = 0.466
-offset_left = 3.36
-offset_top = -0.0160065
-offset_right = 0.415985
-offset_bottom = 0.0319824
+[node name="InstructLabel" type="Label" parent="Main_Menu_Layer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -58.5
+offset_right = 99.5
+offset_bottom = 58.5
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 10
-text = "Design/Programming - Nick Favia
-Level/Menu Design/moral support - Matt Zolfo
-Musical Composer - Alex Riak"
-
-[node name="InstructLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.619
-anchor_top = 0.429
-anchor_right = 0.885
-anchor_bottom = 0.582
-offset_left = -0.0880127
-offset_top = 0.00799561
-offset_right = 0.47998
-offset_bottom = -0.136017
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 12
 text = "Move with WASD
 Left click and hold to leave a trail
 Space to dash
+Esc to Pause
 
 Encircle an enemy with a trail and 
 release left click to damage them"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 1
+[node name="StartButton" type="Button" parent="Main_Menu_Layer"]
 anchors_preset = -1
 anchor_left = 0.281
 anchor_top = 0.802
@@ -83,18 +67,74 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 25
 text = "Start Game"
 
-[node name="QuitButton" type="Button" parent="."]
-layout_mode = 1
+[node name="QuitButton" type="Button" parent="Main_Menu_Layer"]
 anchors_preset = -1
-anchor_left = 0.771
+anchor_left = 0.749
 anchor_top = 0.821
-anchor_right = 0.875
+anchor_right = 0.853
 anchor_bottom = 0.901
-offset_left = -0.192017
+offset_left = 0.151978
 offset_top = -0.00799561
-offset_right = -6.10352e-05
+offset_right = 0.343872
 offset_bottom = 0.151978
 text = "Quit"
 
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[node name="CreditsButton" type="Button" parent="Main_Menu_Layer"]
+anchors_preset = -1
+anchor_left = 0.147
+anchor_top = 0.821
+anchor_right = 0.247
+anchor_bottom = 0.901
+offset_left = -0.343994
+offset_top = -0.00799561
+offset_right = 4.45593
+offset_bottom = 0.151978
+text = "Credits
+"
+
+[node name="Credits_Layer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="FullCreditsLabel" type="Label" parent="Credits_Layer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -263.0
+offset_top = -128.5
+offset_right = 263.0
+offset_bottom = 128.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Design/Programming - Nick Favia
+Level/Menu Design/moral support - Matt Zolfo
+Musical Composer - Alex Riak
+
+Art Assets:
+2D Top-Down Pixel Dungeon Asset Pack  || Craftpix.net
+Slime Mobs Pixel Art Top-Down Sprite Pack  || Craftpix.net
+Hana Charaka - Base Character [sample] || Otterisk [otterisk.itch.io]
+2-D Projectile Sprites -- Wild West Pack || Ho88it [ho88it.itch.io]
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="Credits_Layer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -48.0
+offset_right = 88.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return to Menu"
+
+[connection signal="pressed" from="Main_Menu_Layer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Main_Menu_Layer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Main_Menu_Layer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="Credits_Layer/ReturnButton" to="." method="_on_return_button_pressed"]

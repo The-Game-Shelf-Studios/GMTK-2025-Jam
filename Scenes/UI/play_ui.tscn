@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://crp0hfpr2id5d"]
 
 [ext_resource type="Texture2D" uid="uid://10xd6dde7i3u" path="res://Sprites/Assets/Hearts/heart_sharp.png" id="1_h1rvu"]
-[ext_resource type="Script" uid="uid://jo6wm6q5gufe" path="res://Scripts/General Scripts/play_ui.gd" id="1_us8te"]
+[ext_resource type="Script" uid="uid://jo6wm6q5gufe" path="res://Scripts/UI/play_ui.gd" id="1_us8te"]
 [ext_resource type="Script" uid="uid://bj4dvbkaoc2jp" path="res://Scripts/UI/heart_container.gd" id="2_us8te"]
 
 [node name="Play_UI" type="CanvasLayer"]

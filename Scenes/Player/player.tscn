@@ -554,6 +554,9 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_74mp2")
 
+[node name="IFrameTimer" type="Timer" parent="Hurtbox"]
+one_shot = true
+
 [node name="DodgeCooldown" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -565,4 +568,5 @@ autoplay = true
 
 [connection signal="timeout" from="PlayerStateMachine/Dodge/DodgeTimer" to="PlayerStateMachine/Dodge" method="_on_dodge_timer_timeout"]
 [connection signal="recieved_damage" from="Hurtbox" to="." method="_on_hurtbox_recieved_damage"]
+[connection signal="timeout" from="Hurtbox/IFrameTimer" to="." method="_on_i_frame_timer_timeout"]
 [connection signal="timeout" from="DodgeCooldown" to="." method="_on_dodge_cooldown_timeout"]

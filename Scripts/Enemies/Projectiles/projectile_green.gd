@@ -9,5 +9,4 @@ func _physics_process(delta: float) -> void:
 	pass
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	print("Hit ", area.name)
 	queue_free()

@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjr8ob3p56r72"]
+[gd_scene load_steps=2 format=3 uid="uid://bxhjahoahabry"]
 
-[ext_resource type="Script" uid="uid://ckwv48hnjvarn" path="res://Scenes/Menus/loss_screen.gd" id="1_l27cc"]
+[sub_resource type="GDScript" id="GDScript_1uxxf"]
+script/source = "extends CanvasLayer
+
+
+func _on_loss_button_pressed() -> void:
+	pass # Replace with function body.
+"
 
 [node name="LossScreen" type="CanvasLayer"]
-script = ExtResource("1_l27cc")
+script = SubResource("GDScript_1uxxf")
 
 [node name="LossLabel" type="Label" parent="."]
 anchors_preset = -1

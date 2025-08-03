@@ -13,6 +13,8 @@ var times_fired : int = 0
 @export_range(0.000,1.000) var fire_delay : float = .1
 @export_range(0.000,100.0) var fire_cooldown : float = 1
 
+@export var line_bonus : int = 10
+
 var on_cooldown := false
 
 func _ready() -> void:
@@ -63,6 +65,7 @@ func set_anim_direction() -> String:
 func death() -> void:
 	animated_sprite_2d.animation_finished.disconnect( death )
 	remove_from_game_manager()
+	GameManager.player.increase_line_size(10)
 	queue_free()
 
 func FireProjectile() -> void:

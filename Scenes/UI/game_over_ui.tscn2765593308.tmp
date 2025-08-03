@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqymslgdjlt8c"]
+
+[ext_resource type="Script" uid="uid://c2jc5hs52yfhk" path="res://Scenes/Menus/victory_screen.gd" id="1_8ir8q"]
+
+[node name="Game_Over_UI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_8ir8q")
+
+[node name="VictoryLabel" type="Label" parent="."]
+visible = false
+anchors_preset = -1
+anchor_left = 0.332
+anchor_top = 0.235
+anchor_right = 0.681
+anchor_bottom = 0.341
+offset_left = -0.46402
+offset_top = -0.280014
+offset_right = -0.512085
+offset_bottom = 0.0319824
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "A Winner is you!!"
+horizontal_alignment = 1
+
+[node name="LossLabel" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.332
+anchor_top = 0.235
+anchor_right = 0.681
+anchor_bottom = 0.341
+offset_left = -0.46402
+offset_top = -0.280014
+offset_right = -0.512085
+offset_bottom = 0.0319824
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "You have been defeated.
+Want to try again?"
+horizontal_alignment = 1
+
+[node name="MenuButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.369
+anchor_top = 0.772
+anchor_right = 0.629
+anchor_bottom = 0.887
+offset_left = 158.912
+offset_top = 3.74399
+offset_right = 159.392
+offset_bottom = 4.224
+grow_horizontal = 2
+grow_vertical = 0
+text = "Return to Main Menu"
+
+[node name="RestartButton" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.369
+anchor_top = 0.772
+anchor_right = 0.629
+anchor_bottom = 0.887
+offset_left = -153.088
+offset_top = 3.74399
+offset_right = -152.608
+offset_bottom = 4.224
+grow_horizontal = 2
+grow_vertical = 0
+text = "Restart"

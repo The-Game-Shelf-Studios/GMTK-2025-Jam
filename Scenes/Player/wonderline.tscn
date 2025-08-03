@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://chlve2760h5b1"]
 
 [ext_resource type="Script" uid="uid://dibumyfofsxgn" path="res://Scripts/Player/wonderline.gd" id="1_5pg42"]
-[ext_resource type="Gradient" uid="uid://1jrnffses8hw" path="res://Assets/Wonderline/wonderline_gradient.tres" id="2_67spw"]
+[ext_resource type="Gradient" uid="uid://1jrnffses8hw" path="res://Sprites/Assets/Wonderline/wonderline_gradient.tres" id="2_67spw"]
 
 [sub_resource type="Gradient" id="Gradient_67spw"]
 colors = PackedColorArray(0, 1, 0, 1, 1, 1, 1, 1)

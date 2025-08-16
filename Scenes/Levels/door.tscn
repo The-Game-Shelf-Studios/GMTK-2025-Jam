@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://isx7djr668nr"]
+
+[ext_resource type="TileSet" uid="uid://ewfbey5wibkb" path="res://Sprites/Dungeon_TS.tres" id="1_wgujr"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_43ib6"]
+
+[node name="Door" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 0, 0, 255, 255, 0, 0, 8, 0, 26, 0, 0, 0)
+tile_set = ExtResource("1_wgujr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("ImageTexture_43ib6")
